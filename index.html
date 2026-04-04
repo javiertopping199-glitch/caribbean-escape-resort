@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Caribbean Escape Resort</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --teal:#0a7c6e;--teal-dark:#065a50;--teal-light:#e0f5f2;
+  --gold:#c9a84c;--gold-light:#fdf6e3;
+  --text:#1a1a1a;--muted:#666;--white:#fff;
+  --bg:#f9fafb;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',sans-serif;color:var(--text);background:var(--white);}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;background:rgba(6,90,80,0.97);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:65px;box-shadow:0 2px 20px rgba(0,0,0,.2);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.logo-placeholder{width:42px;height:42px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#1a1a1a;letter-spacing:.5px;overflow:hidden;}
+.logo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.logo-text{color:var(--white);font-size:17px;font-weight:700;letter-spacing:.4px;}
+.logo-text span{color:var(--gold);}
+.nav-links{display:flex;gap:30px;list-style:none;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-links .btn-nav{background:var(--gold);color:#1a1a1a;padding:8px 20px;border-radius:20px;font-weight:600;}
+.nav-links .btn-nav:hover{background:#b8972e;color:#1a1a1a;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:linear-gradient(155deg,#043d36 0%,#0a7c6e 55%,#12a892 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(201,168,76,.08) 0%,transparent 70%);}
+.wave{position:absolute;bottom:0;left:0;width:100%;}
+.hero-content{position:relative;z-index:1;max-width:720px;}
+.badge{display:inline-block;background:rgba(201,168,76,.18);border:1px solid rgba(201,168,76,.5);color:var(--gold);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;padding:7px 20px;border-radius:20px;margin-bottom:28px;}
+.hero h1{font-size:clamp(38px,6vw,74px);color:var(--white);font-weight:900;line-height:1.08;margin-bottom:22px;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:17px;color:rgba(255,255,255,.82);line-height:1.8;margin-bottom:38px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-block;padding:14px 34px;border-radius:30px;font-size:15px;font-weight:600;text-decoration:none;transition:all .25s;cursor:pointer;}
+.btn-gold{background:var(--gold);color:#1a1a1a;}
+.btn-gold:hover{background:#b8972e;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.35);}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.55);color:var(--white);}
+.btn-outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
+
+/* ── SECTION BASE ── */
+section{padding:96px 48px;}
+.section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:10px;}
+.section-title{font-size:clamp(26px,3.5vw,40px);font-weight:800;margin-bottom:14px;line-height:1.2;}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.8;}
+.center{text-align:center;}
+.center .section-sub{max-width:560px;margin:0 auto 52px;}
+
+/* ── OVERVIEW ── */
+#overview{background:var(--bg);}
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;}
+.overview-img{background:linear-gradient(135deg,var(--teal),var(--teal-dark));border-radius:20px;height:400px;display:flex;align-items:center;justify-content:center;font-size:90px;position:relative;overflow:hidden;}
+.overview-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,90,80,.5),transparent);}
+.overview-emoji{z-index:1;}
+.overview-text .section-label{text-align:left;}
+.overview-text .section-title{text-align:left;}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px;}
+.perk{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);}
+.perk::before{content:'✓';width:22px;height:22px;background:var(--teal-light);color:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+
+/* ── SERVICES ── */
+#services{background:var(--white);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;margin-top:52px;}
+.service-card{background:var(--white);border:1.5px solid #ebebeb;border-radius:18px;padding:34px 26px;transition:all .3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--teal);transform:scaleX(0);transition:transform .3s;}
+.service-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(10,124,110,.13);border-color:var(--teal-light);}
+.service-card:hover::after{transform:scaleX(1);}
+.s-icon{width:56px;height:56px;background:var(--teal-light);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:20px;}
+.service-card h3{font-size:18px;font-weight:700;margin-bottom:10px;}
+.service-card p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px;}
+.price-badge{display:inline-block;background:var(--gold-light);color:#8a6a10;font-weight:700;font-size:14px;padding:5px 16px;border-radius:20px;border:1px solid #e8d48a;}
+
+/* ── PACKAGES ── */
+#packages{background:var(--teal-light);}
+.packages-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:28px;margin-top:52px;}
+.pkg-card{background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(10,124,110,.08);transition:transform .3s;}
+.pkg-card:hover{transform:translateY(-6px);}
+.pkg-card.featured{border:2px solid var(--gold);position:relative;}
+.pkg-card.featured::before{content:'Most Popular';position:absolute;top:16px;right:16px;background:var(--gold);color:#1a1a1a;font-size:11px;font-weight:700;padding:4px 12px;border-radius:10px;}
+.pkg-header{padding:28px 28px 20px;background:linear-gradient(135deg,var(--teal-dark),var(--teal));}
+.pkg-header h3{color:var(--white);font-size:20px;font-weight:800;margin-bottom:6px;}
+.pkg-header p{color:rgba(255,255,255,.75);font-size:13px;}
+.pkg-price{font-size:34px;font-weight:900;color:var(--gold);margin-top:12px;}
+.pkg-price span{font-size:14px;font-weight:400;color:rgba(255,255,255,.65);}
+.pkg-body{padding:24px 28px;}
+.pkg-body ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;}
+.pkg-body li{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.pkg-body li::before{content:'✦';color:var(--teal);font-size:11px;flex-shrink:0;}
+.pkg-btn{display:block;text-align:center;background:var(--teal);color:var(--white);padding:13px;border-radius:12px;text-decoration:none;font-weight:600;font-size:14px;transition:background .2s;}
+.pkg-btn:hover{background:var(--teal-dark);}
+.pkg-card.featured .pkg-btn{background:var(--gold);color:#1a1a1a;}
+.pkg-card.featured .pkg-btn:hover{background:#b8972e;}
+
+/* ── CONTACT ── */
+#contact{background:var(--white);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1000px;margin:0 auto;}
+.contact-info{display:flex;flex-direction:column;gap:24px;margin-top:10px;}
+.c-item{display:flex;align-items:flex-start;gap:16px;}
+.c-icon{width:44px;height:44px;background:var(--teal-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.c-item h4{font-size:14px;font-weight:700;margin-bottom:4px;}
+.c-item a,.c-item p{font-size:14px;color:var(--muted);text-decoration:none;}
+.c-item a:hover{color:var(--teal);}
+.contact-links{background:var(--bg);border-radius:20px;padding:36px;}
+.contact-links h3{font-size:18px;font-weight:700;margin-bottom:22px;}
+.link-list{display:flex;flex-direction:column;gap:14px;}
+.link-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--white);border:1px solid #ebebeb;border-radius:12px;text-decoration:none;color:var(--text);transition:all .2s;}
+.link-item:hover{border-color:var(--teal);background:var(--teal-light);}
+.link-icon{font-size:20px;width:36px;text-align:center;}
+.link-item div p{font-size:13px;font-weight:600;}
+.link-item div span{font-size:12px;color:var(--muted);}
+
+/* ── FOOTER ── */
+footer{background:#032e28;color:rgba(255,255,255,.6);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-size:16px;font-weight:700;color:var(--white);}
+.footer-logo span{color:var(--gold);}
+footer p{font-size:13px;}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .nav-links li:not(:last-child){display:none;}
+  section{padding:64px 20px;}
+  .overview-grid,.contact-grid{grid-template-columns:1fr;}
+  .overview-img{height:220px;}
+  .packages-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-placeholder">
+      <!-- Replace the text below with: <img src="your-logo.png" alt="Logo"> -->
+      CER
+    </div>
+    <div class="logo-text">Caribbean <span>Escape</span> Resort</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Packages</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#packages" class="btn-nav">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">✦ Jamaica's Premier Luxury Resort ✦</div>
+    <h1>Escape to<br><span>Caribbean</span><br>Paradise</h1>
+    <p>Where turquoise waters meet world-class luxury. Experience unforgettable stays, rejuvenating spa retreats, thrilling island tours, and exquisite fine dining — all in one breathtaking destination.</p>
+    <div class="hero-btns">
+      <a href="#packages" class="btn btn-gold">View Packages</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#ffffff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+  </svg>
+</div>
+
+<!-- ══ OVERVIEW ══ -->
+<section id="overview">
+  <div class="overview-grid">
+    <div class="overview-img">
+      <span class="overview-emoji">🌴</span>
+    </div>
+    <div class="overview-text">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">Welcome to Caribbean Escape Resort</h2>
+      <p class="section-sub">Nestled along the pristine shores of Jamaica, Caribbean Escape Resort is a sanctuary of luxury, comfort, and natural beauty. We offer a full range of premium services tailored to make every guest's experience truly unforgettable.</p>
+      <p class="section-sub" style="margin-top:14px;">Whether you are visiting for a romantic getaway, a family vacation, or a solo retreat, our dedicated team ensures every detail of your stay is perfect — from your first check-in to your final farewell.</p>
+      <div class="perks">
+        <div class="perk">Beachfront Location</div>
+        <div class="perk">World-Class Spa</div>
+        <div class="perk">Island Tour Guides</div>
+        <div class="perk">Fine Dining Restaurant</div>
+        <div class="perk">24/7 Guest Support</div>
+        <div class="perk">Luxury Room Suites</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="services">
+  <div class="center">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">Choose from our four premium services, each designed to give you the finest Caribbean experience. All prices are in Jamaican Dollars (JMD).</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="s-icon">🛏️</div>
+      <h3>Room Booking</h3>
+      <p>Relax in our elegantly furnished ocean-view rooms and suites. Each room is equipped with modern amenities, air conditioning, and stunning views of the Caribbean Sea.</p>
+      <div class="price-badge">$15,000 JMD / night</div>
+    </div>
+    <div class="service-card">
+      <div class="s-icon">💆</div>
+      <h3>Spa Treatment</h3>
+      <p>Rejuvenate your body and mind with our signature spa treatments. From deep tissue massages to aromatherapy sessions, our expert therapists ensure total relaxation.</p>
+      <div class="price-badge">$8,000 JMD / session</div>
+    </div>
+    <div class="service-card">
+      <div class="s-icon">🚤</div>
+      <h3>Island Tour</h3>
+      <p>Discover the hidden gems of Jamaica with our guided island tours. Explore lush rainforests, cascading waterfalls, and vibrant local culture with our expert guides.</p>
+      <div class="price-badge">$5,000 JMD / tour</div>
+    </div>
+    <div class="service-card">
+      <div class="s-icon">🍽️</div>
+      <h3>Fine Dining Package</h3>
+      <p>Savour the finest Caribbean cuisine crafted by our award-winning chefs. Our fine dining experience blends local flavours with international techniques in an elegant setting.</p>
+      <div class="price-badge">$10,000 JMD / package</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PACKAGES ══ -->
+<section id="packages">
+  <div class="center">
+    <p class="section-label">Special Offers</p>
+    <h2 class="section-title">Special Packages</h2>
+    <p class="section-sub">Save more with our curated packages — perfect combinations of our services designed for every type of traveller.</p>
+  </div>
+  <div class="packages-grid">
+
+    <div class="pkg-card">
+      <div class="pkg-header">
+        <h3>Relaxation Retreat</h3>
+        <p>Perfect for solo travellers</p>
+        <div class="pkg-price">$28,000 <span>JMD</span></div>
+      </div>
+      <div class="pkg-body">
+        <ul>
+          <li>1 Night Room Booking</li>
+          <li>2 Spa Treatment Sessions</li>
+          <li>1 Island Tour</li>
+          <li>Welcome Drink on Arrival</li>
+          <li>Free Wi-Fi &amp; Breakfast</li>
+        </ul>
+        <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
+      </div>
+    </div>
+
+    <div class="pkg-card featured">
+      <div class="pkg-header">
+        <h3>Ultimate Escape</h3>
+        <p>Best for couples &amp; families</p>
+        <div class="pkg-price">$58,000 <span>JMD</span></div>
+      </div>
+      <div class="pkg-body">
+        <ul>
+          <li>3 Nights Room Booking</li>
+          <li>2 Spa Treatment Sessions</li>
+          <li>2 Island Tours</li>
+          <li>1 Fine Dining Package</li>
+          <li>Airport Transfer Included</li>
+          <li>Daily Breakfast &amp; Dinner</li>
+        </ul>
+        <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
+      </div>
+    </div>
+
+    <div class="pkg-card">
+      <div class="pkg-header">
+        <h3>Dining &amp; Leisure</h3>
+        <p>Perfect for food lovers</p>
+        <div class="pkg-price">$35,000 <span>JMD</span></div>
+      </div>
+      <div class="pkg-body">
+        <ul>
+          <li>2 Nights Room Booking</li>
+          <li>2 Fine Dining Packages</li>
+          <li>1 Spa Treatment Session</li>
+          <li>Complimentary Dessert</li>
+          <li>Free Wi-Fi &amp; Parking</li>
+        </ul>
+        <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact &amp; Useful Links</h2>
+      <p class="section-sub">Reach out to our team for reservations, inquiries, or any assistance. We are available 24/7 to make your stay seamless.</p>
+      <div class="contact-info">
+        <div class="c-item">
+          <div class="c-icon">📍</div>
+          <div>
+            <h4>Location</h4>
+            <p>1 Paradise Bay, Montego Bay, Jamaica</p>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">📧</div>
+          <div>
+            <h4>Email Us</h4>
+            <!-- HYPERLINK 1: Email address -->
+            <a href="mailto:info@caribbeanescaperesort.com">info@caribbeanescaperesort.com</a>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <p>+1 (876) 555-0192</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-links">
+      <h3>Quick Links</h3>
+      <div class="link-list">
+
+        <!-- HYPERLINK 2: Internal link (to services section on this page) -->
+        <a href="#services" class="link-item">
+          <div class="link-icon">🔗</div>
+          <div>
+            <p>Our Services</p>
+            <span>Internal link — jump to services on this page</span>
+          </div>
+        </a>
+
+        <!-- HYPERLINK 3: External webpage -->
+        <a href="https://www.visitjamaica.com" target="_blank" class="link-item">
+          <div class="link-icon">🌐</div>
+          <div>
+            <p>Visit Jamaica Tourism</p>
+            <span>External link — visitjamaica.com</span>
+          </div>
+        </a>
+
+        <!-- HYPERLINK 4: User created file/document — replace the href with your actual Google Drive link -->
+        <a href="https://drive.google.com/your-document-link-here" target="_blank" class="link-item">
+          <div class="link-icon">📄</div>
+          <div>
+            <p>Resort Brochure / Price List</p>
+            <span>Download our services document</span>
+          </div>
+        </a>
+
+        <!-- HYPERLINK 5: Email bookings -->
+        <a href="mailto:bookings@caribbeanescaperesort.com" class="link-item">
+          <div class="link-icon">📩</div>
+          <div>
+            <p>Make a Booking Enquiry</p>
+            <span>bookings@caribbeanescaperesort.com</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">Caribbean <span>Escape</span> Resort</div>
+  <p>&copy; 2026 Caribbean Escape Resort. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#overview">Overview</a>
+    <a href="#services">Services</a>
+    <a href="#packages">Packages</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
