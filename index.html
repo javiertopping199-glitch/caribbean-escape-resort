@@ -22,7 +22,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(6,90,80,0.97);z-index:100;di
 .logo-placeholder img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .logo-text{color:var(--white);font-size:17px;font-weight:700;letter-spacing:.4px;}
 .logo-text span{color:var(--gold);}
-.nav-links{display:flex;gap:30px;list-style:none;align-items:center;}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center;}
 .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;transition:color .2s;}
 .nav-links a:hover{color:var(--gold);}
 .nav-links .btn-nav{background:var(--gold);color:#1a1a1a;padding:8px 20px;border-radius:20px;font-weight:600;}
@@ -55,7 +55,7 @@ section{padding:96px 48px;}
 /* ── OVERVIEW ── */
 #overview{background:var(--bg);}
 .overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;}
-.overview-img{background:linear-gradient(135deg,var(--teal),var(--teal-dark));border-radius:10px;height:400px; width:500px;display:flex;align-items:center;justify-content:center;font-size:90px;position:relative;overflow:hidden;}
+.overview-img{background:linear-gradient(135deg,var(--teal),var(--teal-dark));border-radius:20px;height:400px;display:flex;align-items:center;justify-content:center;font-size:90px;position:relative;overflow:hidden;}
 .overview-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(6,90,80,.5),transparent);}
 .overview-emoji{z-index:1;}
 .overview-text .section-label{text-align:left;}
@@ -75,6 +75,27 @@ section{padding:96px 48px;}
 .service-card h3{font-size:18px;font-weight:700;margin-bottom:10px;}
 .service-card p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:18px;}
 .price-badge{display:inline-block;background:var(--gold-light);color:#8a6a10;font-weight:700;font-size:14px;padding:5px 16px;border-radius:20px;border:1px solid #e8d48a;}
+
+/* ── GALLERY ── */
+#gallery{background:var(--bg);}
+.gallery-intro{max-width:560px;margin:0 auto 52px;}
+.gallery-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;}
+.tab-btn{padding:9px 22px;border-radius:20px;border:1.5px solid #ddd;background:var(--white);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.tab-btn:hover,.tab-btn.active{background:var(--teal);border-color:var(--teal);color:var(--white);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto;}
+.gallery-item{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:transform .3s;}
+.gallery-item:hover{transform:scale(1.03);}
+.gallery-item:hover .gallery-overlay{opacity:1;}
+.gallery-item.hidden{display:none;}
+.gallery-img{width:100%;height:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:64px;}
+.g-room{background:linear-gradient(135deg,#0a5c52,#0a7c6e);}
+.g-spa{background:linear-gradient(135deg,#6a3ab5,#9a6adc);}
+.g-tour{background:linear-gradient(135deg,#1a6eb5,#3a9fd4);}
+.g-dining{background:linear-gradient(135deg,#8a4a10,#c97a30);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(6,90,80,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;padding:20px;text-align:center;}
+.gallery-overlay h4{color:var(--white);font-size:16px;font-weight:700;margin-bottom:6px;}
+.gallery-overlay p{color:rgba(255,255,255,.85);font-size:13px;line-height:1.5;}
+.gallery-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent);padding:20px 16px 14px;color:var(--white);font-size:13px;font-weight:600;}
 
 /* ── PACKAGES ── */
 #packages{background:var(--teal-light);}
@@ -124,14 +145,28 @@ footer p{font-size:13px;}
 .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;transition:color .2s;}
 .footer-links a:hover{color:var(--gold);}
 
+/* ── LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;align-items:center;justify-content:center;padding:20px;}
+.lightbox.open{display:flex;}
+.lightbox-inner{background:var(--white);border-radius:20px;overflow:hidden;max-width:600px;width:100%;position:relative;}
+.lightbox-img{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:100px;}
+.lightbox-info{padding:24px 28px;}
+.lightbox-info h3{font-size:20px;font-weight:800;margin-bottom:8px;}
+.lightbox-info p{font-size:14px;color:var(--muted);line-height:1.7;}
+.lightbox-close{position:absolute;top:14px;right:16px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
 @media(max-width:768px){
   nav{padding:0 20px;}
   .nav-links li:not(:last-child){display:none;}
   section{padding:64px 20px;}
   .overview-grid,.contact-grid{grid-template-columns:1fr;}
   .overview-img{height:220px;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
   .packages-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;text-align:center;}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -148,6 +183,7 @@ footer p{font-size:13px;}
   <ul class="nav-links">
     <li><a href="#overview">Overview</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#packages">Packages</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#packages" class="btn-nav">Book Now</a></li>
@@ -162,11 +198,11 @@ footer p{font-size:13px;}
     <p>Where turquoise waters meet world-class luxury. Experience unforgettable stays, rejuvenating spa retreats, thrilling island tours, and exquisite fine dining — all in one breathtaking destination.</p>
     <div class="hero-btns">
       <a href="#packages" class="btn btn-gold">View Packages</a>
-      <a href="#services" class="btn btn-outline">Our Services</a>
+      <a href="#gallery" class="btn btn-outline">View Gallery</a>
     </div>
   </div>
   <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path fill="#ffffff" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
+    <path fill="#f9fafb" d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"/>
   </svg>
 </div>
 
@@ -174,8 +210,7 @@ footer p{font-size:13px;}
 <section id="overview">
   <div class="overview-grid">
     <div class="overview-img">
-      <img src="caribbeanescapemain.png" alt="main home image">
-      <!--<span class="overview-emoji">🌴</span>-->
+       <img src="caribbeanescapemain.png" alt="main home image">
     </div>
     <div class="overview-text">
       <p class="section-label">About Us</p>
@@ -229,6 +264,128 @@ footer p{font-size:13px;}
   </div>
 </section>
 
+<!-- ══ GALLERY ══ -->
+<section id="gallery">
+  <div class="center">
+    <p class="section-label">Photo Gallery</p>
+    <h2 class="section-title">A Glimpse of Paradise</h2>
+    <p class="section-sub gallery-intro">Browse through our collection of resort highlights. Filter by service category to explore what awaits you at Caribbean Escape Resort.</p>
+  </div>
+
+  <!-- Filter tabs -->
+  <div class="gallery-tabs">
+    <button class="tab-btn active" onclick="filterGallery('all')">All</button>
+    <button class="tab-btn" onclick="filterGallery('room')">Room Booking</button>
+    <button class="tab-btn" onclick="filterGallery('spa')">Spa Treatment</button>
+    <button class="tab-btn" onclick="filterGallery('tour')">Island Tour</button>
+    <button class="tab-btn" onclick="filterGallery('dining')">Fine Dining</button>
+  </div>
+
+  <div class="gallery-grid">
+
+    <!-- Room Booking images -->
+    <div class="gallery-item" data-cat="room" onclick="openLightbox('🛏️','g-room','Ocean View Suite','Wake up to breathtaking views of the Caribbean Sea in our elegantly furnished ocean view suites, complete with king-size beds and modern amenities.')">
+      <div class="gallery-img g-room">🛏️</div>
+      <!-- Replace emoji div above with: <img src="room1.jpg" alt="Ocean View Suite" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Ocean View Suite</h4><p>King-size bed with sea view</p></div>
+      <div class="gallery-label">Ocean View Suite</div>
+    </div>
+
+    <div class="gallery-item" data-cat="room" onclick="openLightbox('🏨','g-room','Deluxe Room','Our deluxe rooms offer the perfect blend of comfort and style, featuring premium furnishings, a private balcony, and 24/7 room service.')">
+      <div class="gallery-img g-room">🏨</div>
+      <!-- Replace emoji div above with: <img src="room2.jpg" alt="Deluxe Room" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Deluxe Room</h4><p>Private balcony &amp; room service</p></div>
+      <div class="gallery-label">Deluxe Room</div>
+    </div>
+
+    <div class="gallery-item" data-cat="room" onclick="openLightbox('🌅','g-room','Presidential Suite','The pinnacle of luxury. Our presidential suite features a private pool, panoramic ocean views, a personal butler, and premium furnishings throughout.')">
+      <div class="gallery-img g-room">🌅</div>
+      <!-- Replace emoji div above with: <img src="room3.jpg" alt="Presidential Suite" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Presidential Suite</h4><p>Private pool &amp; butler service</p></div>
+      <div class="gallery-label">Presidential Suite</div>
+    </div>
+
+    <!-- Spa Treatment images -->
+    <div class="gallery-item" data-cat="spa" onclick="openLightbox('💆','g-spa','Relaxation Massage','Our signature full-body relaxation massage uses premium essential oils and expert techniques to melt away stress and restore your inner balance.')">
+      <div class="gallery-img g-spa">💆</div>
+      <!-- Replace emoji div above with: <img src="spa1.jpg" alt="Relaxation Massage" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Relaxation Massage</h4><p>Full body aromatherapy session</p></div>
+      <div class="gallery-label">Relaxation Massage</div>
+    </div>
+
+    <div class="gallery-item" data-cat="spa" onclick="openLightbox('🧖','g-spa','Facial Treatment','Rejuvenate your skin with our luxury facial treatments using natural Caribbean botanicals. Tailored to your skin type for a radiant, refreshed glow.')">
+      <div class="gallery-img g-spa">🧖</div>
+      <!-- Replace emoji div above with: <img src="spa2.jpg" alt="Facial Treatment" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Facial Treatment</h4><p>Natural Caribbean botanicals</p></div>
+      <div class="gallery-label">Facial Treatment</div>
+    </div>
+
+    <div class="gallery-item" data-cat="spa" onclick="openLightbox('🛁','g-spa','Hydrotherapy Pool','Unwind in our heated hydrotherapy pool surrounded by lush tropical gardens. The perfect way to soothe tired muscles and restore total relaxation.')">
+      <div class="gallery-img g-spa">🛁</div>
+      <!-- Replace emoji div above with: <img src="spa3.jpg" alt="Hydrotherapy Pool" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Hydrotherapy Pool</h4><p>Heated pool in tropical gardens</p></div>
+      <div class="gallery-label">Hydrotherapy Pool</div>
+    </div>
+
+    <!-- Island Tour images -->
+    <div class="gallery-item" data-cat="tour" onclick="openLightbox('🌊','g-tour','Dunn\'s River Falls','One of Jamaica\'s most iconic landmarks. Our guided tour takes you on an exhilarating climb up the magnificent terraced waterfall into the cool refreshing water.')">
+      <div class="gallery-img g-tour">🌊</div>
+      <!-- Replace emoji div above with: <img src="tour1.jpg" alt="Dunn's River Falls" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Dunn's River Falls</h4><p>Guided waterfall climb</p></div>
+      <div class="gallery-label">Dunn's River Falls</div>
+    </div>
+
+    <div class="gallery-item" data-cat="tour" onclick="openLightbox('🌿','g-tour','Rainforest Hike','Explore the lush green heart of Jamaica on our guided rainforest hike. Discover exotic wildlife, hidden streams, and breathtaking viewpoints along the way.')">
+      <div class="gallery-img g-tour">🌿</div>
+      <!-- Replace emoji div above with: <img src="tour2.jpg" alt="Rainforest Hike" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Rainforest Hike</h4><p>Exotic wildlife &amp; hidden streams</p></div>
+      <div class="gallery-label">Rainforest Hike</div>
+    </div>
+
+    <div class="gallery-item" data-cat="tour" onclick="openLightbox('🏖️','g-tour','Beach Excursion','Spend a perfect day on Jamaica\'s most beautiful private beaches. Enjoy snorkelling, kayaking, and breathtaking sunset views on this unforgettable beach excursion.')">
+      <div class="gallery-img g-tour">🏖️</div>
+      <!-- Replace emoji div above with: <img src="tour3.jpg" alt="Beach Excursion" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Beach Excursion</h4><p>Snorkelling &amp; sunset views</p></div>
+      <div class="gallery-label">Beach Excursion</div>
+    </div>
+
+    <!-- Fine Dining images -->
+    <div class="gallery-item" data-cat="dining" onclick="openLightbox('🍽️','g-dining','The Coral Restaurant','Our signature fine dining restaurant offers breathtaking ocean views and an exquisite menu of Caribbean-inspired dishes crafted by our award-winning head chef.')">
+      <div class="gallery-img g-dining">🍽️</div>
+      <!-- Replace emoji div above with: <img src="dining1.jpg" alt="The Coral Restaurant" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>The Coral Restaurant</h4><p>Award-winning Caribbean cuisine</p></div>
+      <div class="gallery-label">The Coral Restaurant</div>
+    </div>
+
+    <div class="gallery-item" data-cat="dining" onclick="openLightbox('🥘','g-dining','Signature Dishes','Experience the bold and vibrant flavours of Jamaica through our chef\'s signature dishes, blending traditional recipes with modern culinary artistry.')">
+      <div class="gallery-img g-dining">🥘</div>
+      <!-- Replace emoji div above with: <img src="dining2.jpg" alt="Signature Dishes" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Signature Dishes</h4><p>Traditional meets modern cuisine</p></div>
+      <div class="gallery-label">Signature Dishes</div>
+    </div>
+
+    <div class="gallery-item" data-cat="dining" onclick="openLightbox('🌴','g-dining','Sunset Terrace Dining','Dine under the stars on our breathtaking sunset terrace. The perfect romantic setting for a special evening with Caribbean breezes and panoramic sea views.')">
+      <div class="gallery-img g-dining">🌴</div>
+      <!-- Replace emoji div above with: <img src="dining3.jpg" alt="Sunset Terrace Dining" style="width:100%;height:100%;object-fit:cover;"> -->
+      <div class="gallery-overlay"><h4>Sunset Terrace Dining</h4><p>Dining under the stars</p></div>
+      <div class="gallery-label">Sunset Terrace Dining</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img" id="lb-img"></div>
+    <div class="lightbox-info">
+      <h3 id="lb-title"></h3>
+      <p id="lb-desc"></p>
+    </div>
+  </div>
+</div>
+
 <!-- ══ PACKAGES ══ -->
 <section id="packages">
   <div class="center">
@@ -237,7 +394,6 @@ footer p{font-size:13px;}
     <p class="section-sub">Save more with our curated packages — perfect combinations of our services designed for every type of traveller.</p>
   </div>
   <div class="packages-grid">
-
     <div class="pkg-card">
       <div class="pkg-header">
         <h3>Relaxation Retreat</h3>
@@ -255,7 +411,6 @@ footer p{font-size:13px;}
         <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
       </div>
     </div>
-
     <div class="pkg-card featured">
       <div class="pkg-header">
         <h3>Ultimate Escape</h3>
@@ -274,7 +429,6 @@ footer p{font-size:13px;}
         <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
       </div>
     </div>
-
     <div class="pkg-card">
       <div class="pkg-header">
         <h3>Dining &amp; Leisure</h3>
@@ -292,7 +446,6 @@ footer p{font-size:13px;}
         <a href="mailto:bookings@caribbeanescaperesort.com" class="pkg-btn">Book This Package</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -306,69 +459,40 @@ footer p{font-size:13px;}
       <div class="contact-info">
         <div class="c-item">
           <div class="c-icon">📍</div>
-          <div>
-            <h4>Location</h4>
-            <p>1 Paradise Bay, Montego Bay, Jamaica</p>
-          </div>
+          <div><h4>Location</h4><p>1 Paradise Bay, Montego Bay, Jamaica</p></div>
         </div>
         <div class="c-item">
           <div class="c-icon">📧</div>
           <div>
             <h4>Email Us</h4>
-            <!-- HYPERLINK 1: Email address -->
             <a href="mailto:info@caribbeanescaperesort.com">info@caribbeanescaperesort.com</a>
           </div>
         </div>
         <div class="c-item">
           <div class="c-icon">📞</div>
-          <div>
-            <h4>Phone</h4>
-            <p>+1 (876) 555-0192</p>
-          </div>
+          <div><h4>Phone</h4><p>+1 (876) 555-0192</p></div>
         </div>
       </div>
     </div>
-
     <div class="contact-links">
       <h3>Quick Links</h3>
       <div class="link-list">
-
-        <!-- HYPERLINK 2: Internal link (to services section on this page) -->
         <a href="#services" class="link-item">
           <div class="link-icon">🔗</div>
-          <div>
-            <p>Our Services</p>
-            <span>Internal link — jump to services on this page</span>
-          </div>
+          <div><p>Our Services</p><span>Internal link — jump to services on this page</span></div>
         </a>
-
-        <!-- HYPERLINK 3: External webpage -->
         <a href="https://www.visitjamaica.com" target="_blank" class="link-item">
           <div class="link-icon">🌐</div>
-          <div>
-            <p>Visit Jamaica Tourism</p>
-            <span>External link — visitjamaica.com</span>
-          </div>
+          <div><p>Visit Jamaica Tourism</p><span>External link — visitjamaica.com</span></div>
         </a>
-
-        <!-- HYPERLINK 4: User created file/document — replace the href with your actual Google Drive link -->
         <a href="https://drive.google.com/your-document-link-here" target="_blank" class="link-item">
           <div class="link-icon">📄</div>
-          <div>
-            <p>Resort Brochure / Price List</p>
-            <span>Download our services document</span>
-          </div>
+          <div><p>Resort Brochure / Price List</p><span>Download our services document</span></div>
         </a>
-
-        <!-- HYPERLINK 5: Email bookings -->
         <a href="mailto:bookings@caribbeanescaperesort.com" class="link-item">
           <div class="link-icon">📩</div>
-          <div>
-            <p>Make a Booking Enquiry</p>
-            <span>bookings@caribbeanescaperesort.com</span>
-          </div>
+          <div><p>Make a Booking Enquiry</p><span>bookings@caribbeanescaperesort.com</span></div>
         </a>
-
       </div>
     </div>
   </div>
@@ -381,10 +505,40 @@ footer p{font-size:13px;}
   <div class="footer-links">
     <a href="#overview">Overview</a>
     <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
     <a href="#packages">Packages</a>
     <a href="#contact">Contact</a>
   </div>
 </footer>
 
+<script>
+function filterGallery(cat){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item=>{
+    if(cat==='all'||item.dataset.cat===cat){
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add('hidden');
+    }
+  });
+}
+
+function openLightbox(emoji, bgClass, title, desc){
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lb-img');
+  img.className = 'lightbox-img ' + bgClass;
+  img.textContent = emoji;
+  document.getElementById('lb-title').textContent = title;
+  document.getElementById('lb-desc').textContent = desc;
+  lb.classList.add('open');
+}
+
+function closeLightbox(e){
+  if(!e || e.target===document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+}
+</script>
 </body>
 </html>
